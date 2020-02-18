@@ -57,4 +57,7 @@ dependencies {
 
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    //RecyclerView
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 }
