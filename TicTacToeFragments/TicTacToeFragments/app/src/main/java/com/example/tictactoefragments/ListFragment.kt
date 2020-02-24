@@ -1,5 +1,6 @@
 package com.example.tictactoefragments
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,10 @@ private const val TAG = "GameListFragment"
 class ListFragment : Fragment() {
     private lateinit var gameRecyclerView: RecyclerView
     private var adapter: GameAdapter? = null
+    private lateinit var winLose: TextView
+    private lateinit var moveOrder: TextView
+
+    var indexVal = 0
 
     private val GameViewModel: GameViewModel by lazy {
         ViewModelProviders.of(this).get(GameViewModel::class.java)
@@ -32,6 +37,9 @@ class ListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game_list, container, false)
 
+        //winLose = view.findViewById(R.id.winner_loser_box) as TextView
+        //moveOrder = view.findViewById(R.id.placement_box) as TextView
+
         gameRecyclerView = view.findViewById(R.id.game_recycler_view) as RecyclerView
         gameRecyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -40,8 +48,8 @@ class ListFragment : Fragment() {
         return view
     }
     private fun updateUI(){
-        //val player = GameViewModel.player
-        //adapter = GameAdapter(player)
+        //val players = GameViewModel.player
+        //adapter = GameAdapter(players)
         gameRecyclerView.adapter = adapter
     }
 
@@ -54,19 +62,24 @@ class ListFragment : Fragment() {
     private inner class GameHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
         private lateinit var game: GameViewModel
 
-        private val playerBox: TextView = itemView.findViewById(R.id.winner_loser_box)
-        private val turnBox: TextView = itemView.findViewById(R.id.placement_box)
+        //private val playerBox: TextView = itemView.findViewById(R.id.winner_loser_box)
+        //private val turnBox: TextView = itemView.findViewById(R.id.placement_box)
 
         init {
             itemView.setOnClickListener(this)
         }
         fun bind(game: GameViewModel){
             this.game = game
-            turnBox.text = this.game.movesPlayed
-            playerBox.text = this.game.player.toString()
+            winLose.text = this.game.movesPlayed
+            moveOrder.text = this.game.player.toString()
         }
         override fun onClick(v:View?){
             Toast.makeText(context, "${game.player}", Toast.LENGTH_SHORT).show()
+
+            //Get to DetailFragment
+            val intent = Intent(view?.context, DetailFragment::class.java)
+            intent.putExtra("1", indexVal)
+            startActivity(intent)
         }
     }
     private inner class GameAdapter(var games: List<GameViewModel>) : RecyclerView.Adapter<GameHolder>(){
