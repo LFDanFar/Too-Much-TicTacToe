@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 class TitleFragment : Fragment() {
 
     private lateinit var playButton: Button
+    private lateinit var prevButton: Button
     val viewModel: GameViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -22,10 +23,16 @@ class TitleFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_title, container, false)
 
         playButton = view.findViewById(R.id.play_button)
+        prevButton = view.findViewById(R.id.previous_games_button)
         playButton.setOnClickListener {
             viewModel.newGame()
             view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
         }
+        prevButton.setOnClickListener{
+            viewModel.newGame()
+            view.findNavController().navigate(R.id.action_titleFragment_to_listFragment)
+        }
+
         return view
     }
 }

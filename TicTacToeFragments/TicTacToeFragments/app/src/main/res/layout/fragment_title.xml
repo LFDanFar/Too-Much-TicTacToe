@@ -28,5 +28,11 @@
         android:layout_height="wrap_content"
         android:text="@string/title_playbutton" />
 
+    <Button
+        android:id="@+id/previous_games_button"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:text="Previous games" />
+
 
 </LinearLayout>

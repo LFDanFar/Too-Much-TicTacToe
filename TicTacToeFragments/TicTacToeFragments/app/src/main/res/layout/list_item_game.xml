@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:id="@+id/winner_loser_box"
+        android:layout_width="160dp"
+        android:layout_height="67dp"
+        android:text="X > O" />
 
-</androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/placement_box"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:baselineAligned="false"
+        android:text="[0, 1, 2, 3, 4, 5, 6]" />
+
+</LinearLayout>

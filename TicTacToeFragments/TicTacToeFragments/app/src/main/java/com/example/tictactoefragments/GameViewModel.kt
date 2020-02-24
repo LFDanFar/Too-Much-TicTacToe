@@ -3,10 +3,11 @@ package com.example.tictactoefragments
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-
     var player = mutableListOf('X', 'O')
 
     var moves = mutableListOf<Int>()
+
+    var movesPlayed = "[0, 1, 2, 3, 4, 5, 6]"
     
     val turn: Boolean
         get() = moves.size % 2 == 0
@@ -81,5 +82,16 @@ class GameViewModel : ViewModel() {
             else -> "It's a draw!"
         }
         return ret
+    }
+
+    init {
+        for (i in 0 until 15) {
+            val Moves = moves
+            val players = player
+            Moves.toString()
+            players.toString()
+            Moves.plusAssign(moves)
+            players.plusAssign(players)
+        }
     }
 }
